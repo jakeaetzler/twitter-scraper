@@ -42,11 +42,9 @@ class TwintModel:
         
         return c
     
-
-        
-    
     def run_scrape(self):
         twint.run.Search(self.config)
+
 
 class SentModel:
     def __init__(self) -> None:
@@ -56,10 +54,15 @@ class SentModel:
         return self.sia.polarity_scores(text)['compound']
     
 
-if __name__ == '__main__':
+def get_date():
     strdate = input('Enter date (yyyy-mm-dd): ')
     strlist = [int(x) for x in strdate.split('-')]
     sdate = datetime.date(strlist[0], strlist[1], strlist[2])
+    return sdate
+
+
+if __name__ == '__main__':
+    sdate = get_date()
     
     sm = SentModel()
     sent_avgs = []
